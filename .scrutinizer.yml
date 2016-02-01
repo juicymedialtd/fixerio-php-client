@@ -1,0 +1,10 @@
+filter:
+    excluded_paths:
+        - 'spec/*'
+checks:
+    php: true
+coding_style:
+    php:
+        spaces:
+            around_operators:
+                concatenation: false

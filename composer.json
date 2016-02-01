@@ -1,0 +1,23 @@
+{
+    "name": "xotelia/fixerio-php-client",
+    "description": "FixerIO PHP client",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Achille Guillon",
+            "email": "achille.guillon@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "~5.0"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "~2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "FixerIO\\": "src/"
+        }
+    }
+}
