@@ -50,4 +50,19 @@ class Rates
 
         return $this->client->get($url)->json();
     }
+
+    public function tokenize()
+    {
+        $at = $this->at;
+
+        if ($at == self::LATEST) {
+            $at = new \DateTime();
+        }
+
+        if($at instanceof \DateTime) {
+            $at = $at->format('Ymd');
+        }
+
+        return sprintf('%s%s%s', $this->base, $this->symbols, $at);
+    }
 }

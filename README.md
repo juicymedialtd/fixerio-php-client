@@ -18,5 +18,14 @@ require __DIR__.'/vendor/autoload.php';
 use FixerIO\FixerIO;
 
 $fixer = new FixerIO();
-$rates = $fixer->rates('EUR', ['GBP', 'USD'])->fetch();
+$rates = $fixer->fetchRates('EUR', ['GBP', 'USD']);
+```
+
+## With cache
+
+```php
+$cache = new \Doctrine\Common\Cache\FilesystemCache('./cache');
+
+$fixer = new FixerIO($cache, 3600);
+$rates = $fixer->fetchRates('EUR', ['GBP', 'USD']);
 ```

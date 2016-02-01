@@ -13,7 +13,10 @@
         "guzzlehttp/guzzle": "~5.0"
     },
     "require-dev": {
-        "phpspec/phpspec": "~2.0"
+        "doctrine/cache": "~1.0"
+    },
+    "suggest": {
+        "doctrine/cache": "Required to cache rates with Doctrine cache"
     },
     "autoload": {
         "psr-4": {
