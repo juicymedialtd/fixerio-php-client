@@ -35,7 +35,7 @@ class FixerIO
             }
         } else {
             $this->client = new GuzzleClient([
-                'base_url' => self::BASE_URL,
+                'base_uri' => self::BASE_URL,
             ]);
         }
     }
