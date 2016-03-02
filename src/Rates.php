@@ -38,17 +38,19 @@ class Rates
 
     public function fetch()
     {
-        $url = sprintf('%s/%s?', $this->client->getBaseUrl(), $this->at);
+        $params = [];
 
         if (null !== $this->base) {
-            $url .= sprintf('base=%s', $this->base);
+            $params['base'] = $this->base;
         }
 
         if (null !== $this->symbols) {
-            $url .= sprintf('&symbols=%s', $this->symbols);
+            $params['symbols'] = $this->symbols;
         }
 
-        return $this->client->get($url)->json();
+        $body = (string)$this->client->request('GET', $this->at, ['query' => $params])->getBody();
+
+        return json_decode($body, true);
     }
 
     public function tokenize()
@@ -59,7 +61,7 @@ class Rates
             $at = new \DateTime();
         }
 
-        if($at instanceof \DateTime) {
+        if ($at instanceof \DateTime) {
             $at = $at->format('Ymd');
         }
 
