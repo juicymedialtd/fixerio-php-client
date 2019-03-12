@@ -6,15 +6,16 @@ use GuzzleHttp\ClientInterface;
 
 class Rates
 {
-    const LATEST = 'latest';
-
+//    const LATEST = 'latest?access_key=';
     protected $client;
     protected $base;
     protected $symbols;
     protected $at;
 
-    public function __construct(ClientInterface $client, $base = null, $symbols = null, $at = self::LATEST)
+    public function __construct(ClientInterface $client, $base = null, $symbols = null, $at = null)
     {
+        !$at ? $at = $this->getAccessKey() : '';
+
         $this->client = $client;
 
         $this->base = $base;
@@ -34,6 +35,10 @@ class Rates
         }
 
         $this->at = $at;
+    }
+
+    public static function getAccessKey(){
+        return 'latest?access_key=' . getenv(FIXERIO_ACCESS_KEY);
     }
 
     public function fetch()
@@ -57,7 +62,7 @@ class Rates
     {
         $at = $this->at;
 
-        if ($at == self::LATEST) {
+        if ($at == $this->getAccessKey()) {
             $at = new \DateTime();
         }
 

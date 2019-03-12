@@ -8,7 +8,7 @@ use GuzzleHttp\ClientInterface;
 
 class FixerIO
 {
-    const BASE_URL = 'http://api.fixer.io';
+    const BASE_URL = 'https://data.fixer.io/api';
 
     protected $cache;
     protected $ttl;
@@ -40,8 +40,9 @@ class FixerIO
         }
     }
 
-    public function fetchRates($base = 'EUR', $symbols = null, $at = Rates::LATEST)
+    public function fetchRates($base = 'EUR', $symbols = null, $at = null)
     {
+        !$at ? $at = Rates::getAccessKey() : '';
         $rates = new Rates($this->client, $base, $symbols, $at);
 
         if (null !== $this->cache) {
